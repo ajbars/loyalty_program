@@ -14,26 +14,32 @@ class Client {
   int id;
   String firstName;
   String lastName;
-  bool blocked;
+  String patronymic;
+  String phone;
+
+
 
   Client({
     this.id,
     this.firstName,
     this.lastName,
-    this.blocked,
+    this.patronymic,
+    this.phone
   });
 
   factory Client.fromMap(Map<String, dynamic> json) => new Client(
         id: json["id"],
         firstName: json["first_name"],
         lastName: json["last_name"],
-        blocked: json["blocked"] == 1,
+        patronymic: json["patronymic"],
+        phone: json["phone"],
       );
 
   Map<String, dynamic> toMap() => {
         "id": id,
         "first_name": firstName,
         "last_name": lastName,
-        "blocked": blocked,
+        "patronymic": patronymic,
+        "phone": phone
       };
 }
