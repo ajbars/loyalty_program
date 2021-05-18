@@ -44,3 +44,9 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+ios/Podfile.lock
+.gitignore
+ios/Runner.xcworkspace/contents.xcworkspacedata
+.gitignore
+ios/Runner.xcworkspace/contents.xcworkspacedata
+ios/Runner.xcworkspace/contents.xcworkspacedata
