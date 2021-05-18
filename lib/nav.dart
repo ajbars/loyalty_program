@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'home_screen.dart';
+import 'cabinet.dart';
 
 class Nav extends StatefulWidget {
   @override

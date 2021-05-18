@@ -1,7 +1,10 @@
 class LoyaltyProgram{
 
+String _name = "Loyal Champ";
 String _description = 'Momofoko';
+
 String get description => this._description;
+String get name => this._name;
 
 int bonusCount(int price){
   if (price < 500) {
