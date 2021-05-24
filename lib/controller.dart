@@ -1,0 +1,54 @@
+class Controller{
+// data struct check or createlogin method
+// sign up method
+// read history method
+// read program terms method
+// add purchase method
+// count bonuses
+
+
+
+login(){
+// request whether there is a client with that name, if not suggest signing up
+// if yes, check password. if wrong, show alert / toast
+}
+
+
+
+signup(){
+  // create a client entity in the database with the given email and password pair,
+  // this should be somehow encrypted probably
+}
+
+
+
+checkCreateDataStore(){
+  // createDataStore
+
+  // create Client object from db
+
+  // create LoyaltyProgram object from db
+
+  // create BonusAccount object from db
+}
+
+
+
+void newPurchase(){}
+
+int countBonuses(purchase){
+int bonuses;
+return bonuses;
+}
+
+
+
+List readHistory(){}
+
+
+
+List programTerms(){}
+
+
+
+}
