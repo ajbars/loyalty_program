@@ -9,7 +9,7 @@ class Controller{
 
 
 login(){
-// request whether there is a client with that name, if not suggest signing up
+// request whether there is a client with that email, if not suggest signing up
 // if yes, check password. if wrong, show alert / toast
 }
 
@@ -20,8 +20,12 @@ signup(){
   // this should be somehow encrypted probably
 }
 
+//Create hardcoded data entries in the database
+createHardcodeData(){
 
+}
 
+//Create a single object holding data for the application
 checkCreateDataStore(){
   // createDataStore
 
@@ -36,19 +40,27 @@ checkCreateDataStore(){
 
 void newPurchase(){}
 
-int countBonuses(purchase){
-int bonuses;
-return bonuses;
+
+
+
+int bonusCount(int price){
+  if (price < 500) {
+    return (price / 10).round();
+  }
+  if (price < 1000) {
+    return (price / 10).round() * 2;
+  }
+  else return (price / 10).round() * 3;
+}
+
+
+List readHistory(){
+  //read datastore, return list of entries
 }
 
 
 
-List readHistory(){}
-
-
-
 List programTerms(){}
-
-
+//read datastore, return name and description
 
 }
