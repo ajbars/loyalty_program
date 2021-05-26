@@ -1,9 +1,9 @@
 import 'dart:math';
-
 import 'package:bottombar/models/bonus_account.model.dart';
 import 'package:bottombar/models/loyalty_program.model.dart';
 import 'models/client.model.dart';
 import 'models/dataStore.model.dart';
+import 'models/purchase.model.dart';
 
 class Controller{
 // data struct check or createlogin method
@@ -44,7 +44,7 @@ var loyaltyProgram = LoyaltyProgram();
   // create BonusAccount object from db
 var bonusAccount = BonusAccount(); 
   // createDataStore
-var dataStore = DataStore(myClient, loyaltyProgram, bonusAccount);
+return datastore = DataStore(myClient, loyaltyProgram, bonusAccount);
 }
 
 
@@ -69,42 +69,40 @@ newPurchase(int level, int actualBonus){
   int bonusSpent;
   int bonusAdded;
   
-
  // Generates a random purchase amount with random bonuses spent amount 
 switch (level){
   case 1: {
     buySum = random.nextInt(500); // from 0 to 500 included
     bonusSpent = random.nextInt(50); 
-    if (actualBonus < bonusSpent) bonusSpent = actualBonus; // If bonuses spent random number is bigger than actual bonuses on account
-    datastore.actualBonus = 0;
-    datastore.actualBonus = bonusCount(buySum);
-    // TODO write to db not only datastore
+    dbUpdate(actualBonus, bonusSpent, buySum);
   }
   break;
 
   case 2:{
     buySum = random.nextInt(500) + 500; // from 500 to 999 included
     bonusSpent = random.nextInt(100); 
-    if (actualBonus < bonusSpent) bonusSpent = actualBonus; // If bonuses spent random number is bigger than actual bonuses on account
-    datastore.actualBonus = 0;
-    datastore.actualBonus = bonusCount(buySum);
+    dbUpdate(actualBonus, bonusSpent, buySum);
+
   }
   break;
 
   case 3:{
     buySum = random.nextInt(10000) + 1000; // from  1000 to 11000 included
     bonusSpent = random.nextInt(200); 
-    if (actualBonus < bonusSpent) bonusSpent = actualBonus; // If bonuses spent random number is bigger than actual bonuses on account
-    datastore.actualBonus = 0;
-    datastore.actualBonus = bonusCount(buySum);
+    dbUpdate(actualBonus, bonusSpent, buySum);
   }
   break;
 }
-
-
 }
 
-
+// adds new purchase to db
+void dbUpdate(int actualBonus, int bonusSpent, int buySum){
+      if (actualBonus < bonusSpent) bonusSpent = actualBonus; // If bonuses spent random number is bigger than actual bonuses on account
+    datastore.actualBonus = 0;
+    datastore.actualBonus = bonusCount(buySum);
+    var purchase = Purchase(buySum, bonusSpent);
+    datastore.purchaseHistory.add(purchase);
+}
 
 
 int bonusCount(int price){
