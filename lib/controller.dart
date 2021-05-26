@@ -38,73 +38,83 @@ signup(){
 //Create a single object holding data for the application
 createDataStore(){
   // create Client object from db
-var myClient = Client();
+Client myClient = Client();
   // create LoyaltyProgram object from db
-var loyaltyProgram = LoyaltyProgram();
+LoyaltyProgram loyaltyProgram = LoyaltyProgram();
   // create BonusAccount object from db
-var bonusAccount = BonusAccount(); 
+BonusAccount bonusAccount = BonusAccount(); 
   // createDataStore
-return datastore = DataStore(myClient, loyaltyProgram, bonusAccount);
+DataStore datastore = DataStore(myClient, loyaltyProgram, bonusAccount);
 }
 
 
 // MOCKUP BEFORE THE ACTUAL DB IS CONNECTED
 createDataStoreMock(){
   // create Client object from db
-var myClient = Client();
+Client myClient = Client();
   // create LoyaltyProgram object from db
-var loyaltyProgram = LoyaltyProgram();
+LoyaltyProgram loyaltyProgram = LoyaltyProgram();
   // create BonusAccount object from db
-var bonusAccount = BonusAccount(); 
+BonusAccount bonusAccount = BonusAccount(); 
   // createDataStore
-return datastore = DataStore(myClient, loyaltyProgram, bonusAccount);
+DataStore datastore = DataStore(myClient, loyaltyProgram, bonusAccount);
 }
 
 
 //newPurchase writes history of purchase, runs bonusCount, updates the bonus account and returns a success message
-newPurchase(int level, int currentBonus){
+newPurchase(int level){
   Random random = new Random();
   int buySum;
   int bonusSpent;
-  int bonusAdded; // WHY?
   
+// generate a random index based on the list length
+// and use it to retrieve the element
+var listStores = ['Мишка','Зайчик','Белочка'];
+var store = listStores[random.nextInt(listStores.length)];
+
+
  // Generates a random purchase amount with random bonuses spent amount 
 switch (level){
   case 1: {
     buySum = random.nextInt(500); // from 0 to 500 included
     bonusSpent = random.nextInt(50); 
-    dbUpdate(currentBonus, bonusSpent, buySum);
+    dbUpdate(bonusSpent, buySum, level, store);
   }
   break;
 
   case 2:{
     buySum = random.nextInt(500) + 500; // from 500 to 999 included
     bonusSpent = random.nextInt(100); 
-    dbUpdate(currentBonus, bonusSpent, buySum);
-
+    dbUpdate(bonusSpent, buySum, level, store);
   }
   break;
 
   case 3:{
     buySum = random.nextInt(10000) + 1000; // from  1000 to 11000 included
     bonusSpent = random.nextInt(200); 
-    dbUpdate(currentBonus, bonusSpent, buySum);
+    dbUpdate(bonusSpent, buySum, level, store);
   }
   break;
 }
 }
 
 // adds the new purchase to db
-void dbUpdate(int currentBonus, int bonusSpent, int buySum){
-      if (currentBonus < bonusSpent) bonusSpent = currentBonus; // If 'bonuses spent' random number is bigger than current bonuses in the account
-    datastore.currentBonus = 0;
-    datastore.currentBonus += bonusCount(buySum); // Adding earned bonuses to the account
-    var purchase = Purchase(buySum, bonusSpent); // TODO Add name of store, level of purchases and the earned bonus
+void dbUpdate(int bonusSpent, int buySum, int level, String store){
+      if (datastore.currentBonus < bonusSpent) { // If 'bonuses spent' random number is bigger than current bonuses in the account
+        bonusSpent = datastore.currentBonus;
+        datastore.currentBonus = 0;
+         } 
+         else {
+        datastore.currentBonus -= bonusSpent; 
+         }
+    int earnedBonus = bonusCount(buySum);
+    datastore.currentBonus += earnedBonus; // Adding earned bonuses to the account
+    Purchase purchase = Purchase(buySum, bonusSpent, level, earnedBonus, store); 
     datastore.purchaseHistory.add(purchase);
     // TODO return success message
 }
 
-
+// counts bonuses based on the price of buy
 int bonusCount(int price){
   if (price < 500) {
     return (price / 10).round();
