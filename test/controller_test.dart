@@ -16,7 +16,7 @@ expect(controller.bonusCount(1000), 300);
 
 
 
-controller.newPurchase(500);
+var purchase = controller.newPurchase(3, 200);
 
 
 

@@ -48,6 +48,7 @@ return datastore = DataStore(myClient, loyaltyProgram, bonusAccount);
 }
 
 
+// MOCKUP BEFORE THE ACTUAL DB IS CONNECTED
 createDataStoreMock(){
   // create Client object from db
 var myClient = Client();
@@ -60,28 +61,26 @@ return datastore = DataStore(myClient, loyaltyProgram, bonusAccount);
 }
 
 
-
-
 //newPurchase writes history of purchase, runs bonusCount, updates the bonus account and returns a success message
-newPurchase(int level, int actualBonus){
+newPurchase(int level, int currentBonus){
   Random random = new Random();
   int buySum;
   int bonusSpent;
-  int bonusAdded;
+  int bonusAdded; // WHY?
   
  // Generates a random purchase amount with random bonuses spent amount 
 switch (level){
   case 1: {
     buySum = random.nextInt(500); // from 0 to 500 included
     bonusSpent = random.nextInt(50); 
-    dbUpdate(actualBonus, bonusSpent, buySum);
+    dbUpdate(currentBonus, bonusSpent, buySum);
   }
   break;
 
   case 2:{
     buySum = random.nextInt(500) + 500; // from 500 to 999 included
     bonusSpent = random.nextInt(100); 
-    dbUpdate(actualBonus, bonusSpent, buySum);
+    dbUpdate(currentBonus, bonusSpent, buySum);
 
   }
   break;
@@ -89,19 +88,20 @@ switch (level){
   case 3:{
     buySum = random.nextInt(10000) + 1000; // from  1000 to 11000 included
     bonusSpent = random.nextInt(200); 
-    dbUpdate(actualBonus, bonusSpent, buySum);
+    dbUpdate(currentBonus, bonusSpent, buySum);
   }
   break;
 }
 }
 
-// adds new purchase to db
-void dbUpdate(int actualBonus, int bonusSpent, int buySum){
-      if (actualBonus < bonusSpent) bonusSpent = actualBonus; // If bonuses spent random number is bigger than actual bonuses on account
-    datastore.actualBonus = 0;
-    datastore.actualBonus = bonusCount(buySum);
-    var purchase = Purchase(buySum, bonusSpent);
+// adds the new purchase to db
+void dbUpdate(int currentBonus, int bonusSpent, int buySum){
+      if (currentBonus < bonusSpent) bonusSpent = currentBonus; // If 'bonuses spent' random number is bigger than current bonuses in the account
+    datastore.currentBonus = 0;
+    datastore.currentBonus += bonusCount(buySum); // Adding earned bonuses to the account
+    var purchase = Purchase(buySum, bonusSpent); // TODO Add name of store, level of purchases and the earned bonus
     datastore.purchaseHistory.add(purchase);
+    // TODO return success message
 }
 
 
