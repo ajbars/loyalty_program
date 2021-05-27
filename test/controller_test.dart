@@ -16,7 +16,8 @@ expect(controller.bonusCount(1000), 300);
 
 
 
-var purchase = controller.newPurchase(3, 200);
+var datastore = controller.createDataStoreMock();
+expect(datastore.myClient.name, "Ivan");
 
 
 

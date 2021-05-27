@@ -13,5 +13,15 @@ import 'package:bottombar/models/loyalty_program.model.dart';
 import 'bonus_account.model.dart';
 
 class DataStore {
-  DataStore(Client myClient, LoyaltyProgram loyaltyProgram, BonusAccount bonusAccount);
-}
+  Client _myClient;
+  LoyaltyProgram _loyaltyProgram;
+  BonusAccount _bonusAccount;
+
+  DataStore(this._myClient, this._loyaltyProgram, this._bonusAccount);
+
+  Client get myClient => _myClient;
+  LoyaltyProgram get loyaltyProgram => _loyaltyProgram;
+  BonusAccount get bonusAccount => _bonusAccount;
+   } 
+
+

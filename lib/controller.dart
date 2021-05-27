@@ -5,6 +5,10 @@ import 'models/client.model.dart';
 import 'models/dataStore.model.dart';
 import 'models/purchase.model.dart';
 
+
+
+var datastore;
+
 class Controller{
 // data struct check or createlogin method
 // sign up method
@@ -12,8 +16,6 @@ class Controller{
 // read program terms method
 // add purchase method
 // count bonuses
-
-var datastore;
 
 
 login(String email, String password){
@@ -36,28 +38,36 @@ signup(){
 
 
 //Create a single object holding data for the application
-createDataStore(){
-  // create Client object from db
-Client myClient = Client();
-  // create LoyaltyProgram object from db
-LoyaltyProgram loyaltyProgram = LoyaltyProgram();
-  // create BonusAccount object from db
-BonusAccount bonusAccount = BonusAccount(); 
-  // createDataStore
-DataStore datastore = DataStore(myClient, loyaltyProgram, bonusAccount);
-}
+// createDataStore(){
+//   // create Client object from db
+// Client myClient = Client();
+//   // create LoyaltyProgram object from db
+// LoyaltyProgram loyaltyProgram = LoyaltyProgram();
+//   // create BonusAccount object from db
+// BonusAccount bonusAccount = BonusAccount(); 
+//   // createDataStore
+// DataStore datastore = DataStore(myClient, loyaltyProgram, bonusAccount);
+// }
 
 
 // MOCKUP BEFORE THE ACTUAL DB IS CONNECTED
 createDataStoreMock(){
   // create Client object from db
-Client myClient = Client();
+  String firstName="Ivan";
+  String lastName = "Solzhenitzyn";
+  String patronymic = "Ivanovich";
+  String phone = "223322";
+
+Client myClient = Client(firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone);
   // create LoyaltyProgram object from db
-LoyaltyProgram loyaltyProgram = LoyaltyProgram();
+  String name = "Бодрый кролик";
+  String description = "Вы присоединяетесь к программе, устанавливая приложение и создавая учетную запись.\n При покупке в данном магазине 1 бонус равен 1 рублю.\nБонусы используются при каждой покупке\n(1) на каждые потраченные 10 рублей вы получаете 1 бонус, до 500 рублей\n(2)при покупке от 500 рублей за каждые 10 рублей добавляются 2 бонуса\n (3) при покупке от 1000 рублей за каждые 10 рублей добавляются 4 бонуса\n Все операции программы лояльности производятся только в приложении";
+LoyaltyProgram loyaltyProgram = LoyaltyProgram(name, description);
   // create BonusAccount object from db
 BonusAccount bonusAccount = BonusAccount(); 
   // createDataStore
 DataStore datastore = DataStore(myClient, loyaltyProgram, bonusAccount);
+return datastore;
 }
 
 
@@ -99,7 +109,7 @@ switch (level){
 }
 
 // adds the new purchase to db
-void dbUpdate(int bonusSpent, int buySum, int level, String store){
+void dbUpdate(int bonusSpent, int buySum, int level, String store, ){
       if (datastore.currentBonus < bonusSpent) { // If 'bonuses spent' random number is bigger than current bonuses in the account
         bonusSpent = datastore.currentBonus;
         datastore.currentBonus = 0;
