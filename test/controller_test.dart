@@ -15,12 +15,16 @@ expect(controller.bonusCount(510), 102);
 expect(controller.bonusCount(1000), 300);
 
 
+});
 
+test('creating mock database', () 
+{
+var controller = Controller();
 var datastore = controller.createDataStoreMock();
 expect(datastore.myClient.name, "Ivan");
-
-
-
+expect(datastore.myClient.patronymic, "Ivanovich");
+expect(datastore.loyaltyProgram.name, 'Бодрый кролик');
+expect(datastore.bonusAccount.currentBonuses, 0);
 });
 
 

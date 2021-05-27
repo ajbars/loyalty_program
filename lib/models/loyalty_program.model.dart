@@ -1,8 +1,9 @@
 class LoyaltyProgram{
-  LoyaltyProgram(String name, String description);
 String _name;
-String get name => this._name;
   String _description;
+
+  LoyaltyProgram(this._name, this._description);
+String get name => this._name;
 String get description => this._description;
 }
 // Something is wrong here

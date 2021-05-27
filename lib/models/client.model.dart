@@ -27,7 +27,7 @@ class Client {
     this.phone
   });
 
-  String get name => this.name;
+  String get name => this.firstName;
   // TODO change to private
 
   factory Client.fromMap(Map<String, dynamic> json) => new Client(
