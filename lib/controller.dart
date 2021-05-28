@@ -72,7 +72,7 @@ return datastore;
 
 
 //newPurchase writes history of purchase, runs bonusCount, updates the bonus account and returns a success message
-newPurchase(int level){
+newPurchase(DataStore datastore, int level){
   Random random = new Random();
   int buySum;
   int bonusSpent;
@@ -81,46 +81,47 @@ newPurchase(int level){
 // and use it to retrieve the element
 var listStores = ['Мишка','Зайчик','Белочка'];
 var store = listStores[random.nextInt(listStores.length)];
-
+ 
 
  // Generates a random purchase amount with random bonuses spent amount 
 switch (level){
   case 1: {
-    buySum = random.nextInt(500); // from 0 to 500 included
+    buySum = random.nextInt(500) + 1; // from 1 to 499
     bonusSpent = random.nextInt(50); 
-    dbUpdate(bonusSpent, buySum, level, store);
+    dbUpdate(datastore, bonusSpent, buySum, level, store);
   }
   break;
 
   case 2:{
     buySum = random.nextInt(500) + 500; // from 500 to 999 included
     bonusSpent = random.nextInt(100); 
-    dbUpdate(bonusSpent, buySum, level, store);
+    dbUpdate(datastore, bonusSpent, buySum, level, store);
   }
   break;
 
   case 3:{
-    buySum = random.nextInt(10000) + 1000; // from  1000 to 11000 included
+    buySum = random.nextInt(9000) + 1000; // from  1000 to 9999 included
     bonusSpent = random.nextInt(200); 
-    dbUpdate(bonusSpent, buySum, level, store);
+    dbUpdate(datastore, bonusSpent, buySum, level, store);
   }
   break;
 }
 }
 
 // adds the new purchase to db
-void dbUpdate(int bonusSpent, int buySum, int level, String store, ){
-      if (datastore.currentBonus < bonusSpent) { // If 'bonuses spent' random number is bigger than current bonuses in the account
-        bonusSpent = datastore.currentBonus;
-        datastore.currentBonus = 0;
+void dbUpdate(DataStore datastore, int bonusSpent, int buySum, int level, String store){
+      if (datastore.bonusAccount.currentBonuses < bonusSpent) { // If 'bonuses spent' random number is bigger than current bonuses in the account
+        bonusSpent = datastore.bonusAccount.currentBonuses;
+        datastore.bonusAccount.setBonuses(0);
          } 
          else {
-        datastore.currentBonus -= bonusSpent; 
+        datastore.bonusAccount.setBonuses(datastore.bonusAccount.currentBonuses - bonusSpent); 
          }
     int earnedBonus = bonusCount(buySum);
-    datastore.currentBonus += earnedBonus; // Adding earned bonuses to the account
+    // Adding earned bonuses to the account
+    datastore.bonusAccount.setBonuses(datastore.bonusAccount.currentBonuses + earnedBonus); 
     Purchase purchase = Purchase(buySum, bonusSpent, level, earnedBonus, store); 
-    datastore.purchaseHistory.add(purchase);
+    datastore.bonusAccount.purchaseHistory.add(purchase);
     // TODO return success message
 }
 

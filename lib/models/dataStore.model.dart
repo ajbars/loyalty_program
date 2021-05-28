@@ -16,7 +16,6 @@ class DataStore {
   Client _myClient;
   LoyaltyProgram _loyaltyProgram;
   BonusAccount _bonusAccount;
-
   DataStore(this._myClient, this._loyaltyProgram, this._bonusAccount);
 
   Client get myClient => _myClient;
