@@ -61,7 +61,7 @@ createDataStoreMock(){
 Client myClient = Client(firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone);
   // create LoyaltyProgram object from db
   String name = "Бодрый кролик";
-  String description = "Вы присоединяетесь к программе, устанавливая приложение и создавая учетную запись.\n При покупке в данном магазине 1 бонус равен 1 рублю.\nБонусы используются при каждой покупке\n(1) на каждые потраченные 10 рублей вы получаете 1 бонус, до 500 рублей\n(2)при покупке от 500 рублей за каждые 10 рублей добавляются 2 бонуса\n (3) при покупке от 1000 рублей за каждые 10 рублей добавляются 4 бонуса\n Все операции программы лояльности производятся только в приложении";
+  String description = "Вы присоединяетесь к программе, устанавливая приложение и создавая учетную запись.\n При покупке в данном магазине 1 бонус равен 1 рублю.\nБонусы используются при каждой покупке\n(1) на каждые потраченные 10 рублей вы получаете 1 бонус, до 500 рублей\n(2)при покупке от 500 рублей за каждые 10 рублей добавляются 2 бонуса\n (3) при покупке от 1000 рублей за каждые 10 рублей добавляются 3 бонуса\n Все операции программы лояльности производятся только в приложении.";
 LoyaltyProgram loyaltyProgram = LoyaltyProgram(name, description);
   // create BonusAccount object from db
 BonusAccount bonusAccount = BonusAccount(0); 
@@ -115,11 +115,13 @@ void dbUpdate(DataStore datastore, int bonusSpent, int buySum, int level, String
         datastore.bonusAccount.setBonuses(0);
          } 
          else {
-        datastore.bonusAccount.setBonuses(datastore.bonusAccount.currentBonuses - bonusSpent); 
+           int x = datastore.bonusAccount.currentBonuses - bonusSpent;
+        datastore.bonusAccount.setBonuses(x);
          }
     int earnedBonus = bonusCount(buySum);
     // Adding earned bonuses to the account
-    datastore.bonusAccount.setBonuses(datastore.bonusAccount.currentBonuses + earnedBonus); 
+    int y = datastore.bonusAccount.currentBonuses + earnedBonus;
+    datastore.bonusAccount.setBonuses(y); 
     Purchase purchase = Purchase(buySum, bonusSpent, level, earnedBonus, store); 
     datastore.bonusAccount.purchaseHistory.add(purchase);
     // TODO return success message
@@ -143,9 +145,13 @@ return datastore.bonusAccount.purchaseHistory;
 }
 
 
-
-List programTerms(){}
+Map<String, String> programTerms(datastore){
 //read datastore, return name and description
-
+Map<String, String> loyaltyTerms = {
+  "name": datastore.loyaltyProgram.name,
+  "desc": datastore.loyaltyProgram.description,
+};
+return loyaltyTerms;
 }
 
+}

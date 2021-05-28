@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('bonus count function', () {
-  final Controller controller = Controller();
+  Controller controller = Controller();
 
 //level one of program returns 1/10 as bonuses
 expect(controller.bonusCount(100), 10);
@@ -19,7 +19,7 @@ expect(controller.bonusCount(1000), 300);
 
 test('creating mock database', () 
 {
-final Controller controller = Controller();
+Controller controller = Controller();
 DataStore datastore = controller.createDataStoreMock();
 expect(datastore.myClient.name, "Ivan");
 expect(datastore.myClient.patronymic, "Ivanovich");
@@ -30,7 +30,7 @@ expect(datastore.bonusAccount.currentBonuses, 0);
 
 test('adding random purchase', () 
 {
-final Controller controller = Controller();
+Controller controller = Controller();
 DataStore datastore = controller.createDataStoreMock();
 
 // Testing 3 levels of a loyalty program
@@ -48,7 +48,7 @@ expect(datastore.bonusAccount.currentBonuses > 100, true);
 
 
 test('testing dbUpdate for creating a purchase object in purchaseHistory', () {
-final Controller controller = Controller();
+Controller controller = Controller();
 DataStore datastore = controller.createDataStoreMock();
 // void dbUpdate(DataStore datastore, int bonusSpent, int buySum, int level, String store)
 controller.dbUpdate(datastore, 10, 1000, 3, "Snusmumrik");
@@ -63,7 +63,7 @@ expect(datastore.bonusAccount.purchaseHistory[0].store, 'Snusmumrik');
 
 
 test('readHistory method', () {
-final Controller controller = Controller();
+Controller controller = Controller();
 DataStore datastore = controller.createDataStoreMock();
 controller.newPurchase(datastore, 1);
 controller.newPurchase(datastore, 1);
@@ -71,18 +71,28 @@ controller.newPurchase(datastore, 2);
 controller.newPurchase(datastore, 2);
 controller.newPurchase(datastore, 3);
 controller.newPurchase(datastore, 3);
-List<Purchase> history = controller.readHistory(datastore);
+final List<Purchase> history = controller.readHistory(datastore);
 for (var i in history){
   print(i.bonusSpent);
-    print(i.buySum);
+  print(i.buySum);
   print(i.earnedBonus);
   print(i.level);
-     print(i.store);
-     print("Текущий бонус: ${datastore.bonusAccount.currentBonuses}");
+  print(i.store);
+  print("Текущий бонус: ${datastore.bonusAccount.currentBonuses}");
 }
-// void dbUpdate(DataStore datastore, int bonusSpent, int buySum, int level, String store)
-
 expect(history.length == 6, true);
+controller = null;
+});
+
+
+test("programTerms method", (){
+Controller controller = Controller();
+DataStore datastore = controller.createDataStoreMock();
+// final Map<String, String> 
+var programTerms = controller.programTerms(datastore);
+expect(programTerms["name"], "Бодрый кролик");
+expect(programTerms["desc"], "Зайчик");
+
 });
 
 
