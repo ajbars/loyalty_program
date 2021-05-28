@@ -108,7 +108,7 @@ switch (level){
 }
 }
 
-// adds the new purchase to db
+// Adds the new purchase to db
 void dbUpdate(DataStore datastore, int bonusSpent, int buySum, int level, String store){
       if (datastore.bonusAccount.currentBonuses < bonusSpent) { // If 'bonuses spent' random number is bigger than current bonuses in the account
         bonusSpent = datastore.bonusAccount.currentBonuses;
@@ -137,8 +137,9 @@ int bonusCount(int price){
 }
 
 
-List readHistory(){
+List readHistory(datastore){
   //read datastore, return list of entries
+return datastore.bonusAccount.purchaseHistory;
 }
 
 

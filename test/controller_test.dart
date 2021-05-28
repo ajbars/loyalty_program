@@ -1,5 +1,6 @@
 import 'package:bottombar/controller.dart';
 import 'package:bottombar/models/dataStore.model.dart';
+import 'package:bottombar/models/purchase.model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -42,7 +43,6 @@ expect(datastore.bonusAccount.currentBonuses > 100, true);
 controller.newPurchase(datastore, 3);
 print(datastore.bonusAccount.currentBonuses);
 expect(datastore.bonusAccount.currentBonuses > 100, true);
-
 });
 
 
@@ -58,6 +58,31 @@ expect(datastore.bonusAccount.purchaseHistory[0].buySum, 1000);
 expect(datastore.bonusAccount.purchaseHistory[0].earnedBonus, 300);
 expect(datastore.bonusAccount.purchaseHistory[0].level, 3);
 expect(datastore.bonusAccount.purchaseHistory[0].store, 'Snusmumrik');
+});
+
+
+
+test('readHistory method', () {
+final Controller controller = Controller();
+DataStore datastore = controller.createDataStoreMock();
+controller.newPurchase(datastore, 1);
+controller.newPurchase(datastore, 1);
+controller.newPurchase(datastore, 2);
+controller.newPurchase(datastore, 2);
+controller.newPurchase(datastore, 3);
+controller.newPurchase(datastore, 3);
+List<Purchase> history = controller.readHistory(datastore);
+for (var i in history){
+  print(i.bonusSpent);
+    print(i.buySum);
+  print(i.earnedBonus);
+  print(i.level);
+     print(i.store);
+     print("Текущий бонус: ${datastore.bonusAccount.currentBonuses}");
+}
+// void dbUpdate(DataStore datastore, int bonusSpent, int buySum, int level, String store)
+
+expect(history.length == 6, true);
 });
 
 
