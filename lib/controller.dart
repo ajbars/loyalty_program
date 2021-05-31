@@ -5,6 +5,9 @@ import 'models/client.model.dart';
 import 'models/dataStore.model.dart';
 import 'models/purchase.model.dart';
 
+import 'dart:developer';
+
+
 
 
 var datastore;
@@ -35,8 +38,9 @@ signUp(email, firstName, lastName, patronymic, phone, datastore){
   // create a client entity in the database with the given email and password pair,
   // this should be somehow encrypted probably
 Client newClient = Client(email: email, firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone);
-print (datastore.myClient.lastName);
-datastore.setClient(newClient);
+// print (datastore.myClient.setNewClient());
+// print(in());
+datastore.setNewClient = newClient;
 }
 
 

@@ -98,11 +98,9 @@ Controller controller = Controller();
 DataStore datastore = controller.createDataStoreMock();
 // final Map<String, String> 
 controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила", "104224", datastore);
+expect(datastore.myClient.phone, "104224");
 expect(datastore.myClient.firstName, "Пётр");
-expect(datastore.myClient.phone, 223322);
 });
 
-
-
-}
+}s
 

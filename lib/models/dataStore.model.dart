@@ -22,10 +22,10 @@ class DataStore {
 
   Client get myClient => _myClient;
 
-  set setClient(Client newClient) {
+set setNewClient (Client newClient) {
   this._myClient = newClient;
   } 
-  
+
   LoyaltyProgram get loyaltyProgram => _loyaltyProgram;
   BonusAccount get bonusAccount => _bonusAccount;
 
