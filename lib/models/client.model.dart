@@ -17,6 +17,7 @@ class Client {
   String lastName;
   String patronymic;
   String phone;
+  String password;
 
 
 
@@ -25,7 +26,8 @@ class Client {
     this.firstName,
     this.lastName,
     this.patronymic,
-    this.phone
+    this.phone,
+    this.password
   });
 
   String get name => this.firstName;

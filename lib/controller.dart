@@ -7,11 +7,6 @@ import 'models/purchase.model.dart';
 
 import 'dart:developer';
 
-
-
-
-var datastore;
-
 class Controller{
 // data struct check or createlogin method
 // sign up method
@@ -21,7 +16,7 @@ class Controller{
 // count bonuses
 
 
-login(String email, String password){
+login(String email, String password, DataStore datastore){
 // request whether there is a client with that email, if not suggest signing up
 // if yes, check password. if wrong, show alert / toast
 
@@ -30,14 +25,22 @@ login(String email, String password){
 //Check whether password is correct for this email
 //if not, show toast 'wrong password'
 //if yes, Navigator to Cabinet screen
+if (datastore.myClient.email != email){
+  return("Wrong email. Please correct or register");
+} else if (datastore.myClient.password != password) {
+  return ("Wrong password"); 
+} else {
+  return ("Login successful!");
+}
 }
 
 
 
-signUp(email, firstName, lastName, patronymic, phone, datastore){
+
+signUp(email, firstName, lastName, patronymic, phone, password, datastore){
   // create a client entity in the database with the given email and password pair,
   // this should be somehow encrypted probably
-Client newClient = Client(email: email, firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone);
+Client newClient = Client(email: email, firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone, password: password);
 // print (datastore.myClient.setNewClient());
 // print(in());
 datastore.setNewClient = newClient;
@@ -64,9 +67,10 @@ createDataStoreMock(){
   String lastName = "Solzhenitzyn";
   String patronymic = "Ivanovich";
   String phone = "223322";
-  String email = "ivo@solzhenitzyn@gmail.com";
+  String email = "ivo@solzh@gmail.com";
+  String password = "шубадуба";
 
-Client myClient = Client(email: email, firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone);
+Client myClient = Client(email: email, firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone, password: password);
   // create LoyaltyProgram object from db
   String name = "Бодрый кролик";
   String description = "Вы присоединяетесь к программе, устанавливая приложение и создавая учетную запись.\n При покупке в данном магазине 1 бонус равен 1 рублю.\nБонусы используются при каждой покупке\n(1) на каждые потраченные 10 рублей вы получаете 1 бонус, до 500 рублей\n(2)при покупке от 500 рублей за каждые 10 рублей добавляются 2 бонуса\n (3) при покупке от 1000 рублей за каждые 10 рублей добавляются 3 бонуса\n Все операции программы лояльности производятся только в приложении.";
