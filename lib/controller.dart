@@ -26,11 +26,11 @@ login(String email, String password, DataStore datastore){
 //if not, show toast 'wrong password'
 //if yes, Navigator to Cabinet screen
 if (datastore.myClient.email != email){
-  return("Wrong email. Please correct or register");
+  return("bad email");
 } else if (datastore.myClient.password != password) {
-  return ("Wrong password"); 
+  return ("bad password"); 
 } else {
-  return ("Login successful!");
+  return ("success");
 }
 }
 
@@ -54,7 +54,7 @@ createDataStoreMock(){
   String lastName = "Solzhenitzyn";
   String patronymic = "Ivanovich";
   String phone = "223322";
-  String email = "ivo@solzh@gmail.com";
+  String email = "ivo_solzh@gmail.com";
   String password = "шубадуба";
 
 Client myClient = Client(email: email, firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone, password: password);

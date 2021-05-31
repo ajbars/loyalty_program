@@ -1,3 +1,4 @@
+import 'package:bottombar/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'nav.dart';
 void main(){
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Bottom Navigation Bar',
-      home: Nav()
+      home: LogIn()
     );
   }
 }
