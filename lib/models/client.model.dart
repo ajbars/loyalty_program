@@ -12,6 +12,7 @@ String clientToJson(Client data) {
 
 class Client {
   int id;
+  String email;
   String firstName;
   String lastName;
   String patronymic;
@@ -20,7 +21,7 @@ class Client {
 
 
   Client({
-    this.id,
+    this.email,
     this.firstName,
     this.lastName,
     this.patronymic,
@@ -31,7 +32,7 @@ class Client {
   // TODO change to private
 
   factory Client.fromMap(Map<String, dynamic> json) => new Client(
-        id: json["id"],
+        email: json["email"],
         firstName: json["first_name"],
         lastName: json["last_name"],
         patronymic: json["patronymic"],

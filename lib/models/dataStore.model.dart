@@ -16,11 +16,19 @@ class DataStore {
   Client _myClient;
   LoyaltyProgram _loyaltyProgram;
   BonusAccount _bonusAccount;
+
+
   DataStore(this._myClient, this._loyaltyProgram, this._bonusAccount);
 
   Client get myClient => _myClient;
+
+  set setClient(Client newClient) {
+  this._myClient = newClient;
+  } 
+  
   LoyaltyProgram get loyaltyProgram => _loyaltyProgram;
   BonusAccount get bonusAccount => _bonusAccount;
+
    } 
 
 

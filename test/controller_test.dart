@@ -81,7 +81,6 @@ for (var i in history){
   print("Текущий бонус: ${datastore.bonusAccount.currentBonuses}");
 }
 expect(history.length == 6, true);
-controller = null;
 });
 
 
@@ -93,6 +92,16 @@ var programTerms = controller.programTerms(datastore);
 expect(programTerms["name"], "Бодрый кролик");
 expect(programTerms["desc"].length, 459);
 });
+
+test("SignUp method", (){
+Controller controller = Controller();
+DataStore datastore = controller.createDataStoreMock();
+// final Map<String, String> 
+controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила", "104224", datastore);
+expect(datastore.myClient.firstName, "Пётр");
+expect(datastore.myClient.phone, 223322);
+});
+
 
 
 }

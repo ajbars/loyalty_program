@@ -31,9 +31,12 @@ login(String email, String password){
 
 
 
-signup(){
+signUp(email, firstName, lastName, patronymic, phone, datastore){
   // create a client entity in the database with the given email and password pair,
   // this should be somehow encrypted probably
+Client newClient = Client(email: email, firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone);
+print (datastore.myClient.lastName);
+datastore.setClient(newClient);
 }
 
 
@@ -57,8 +60,9 @@ createDataStoreMock(){
   String lastName = "Solzhenitzyn";
   String patronymic = "Ivanovich";
   String phone = "223322";
+  String email = "ivo@solzhenitzyn@gmail.com";
 
-Client myClient = Client(firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone);
+Client myClient = Client(email: email, firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone);
   // create LoyaltyProgram object from db
   String name = "Бодрый кролик";
   String description = "Вы присоединяетесь к программе, устанавливая приложение и создавая учетную запись.\n При покупке в данном магазине 1 бонус равен 1 рублю.\nБонусы используются при каждой покупке\n(1) на каждые потраченные 10 рублей вы получаете 1 бонус, до 500 рублей\n(2)при покупке от 500 рублей за каждые 10 рублей добавляются 2 бонуса\n (3) при покупке от 1000 рублей за каждые 10 рублей добавляются 3 бонуса\n Все операции программы лояльности производятся только в приложении.";
