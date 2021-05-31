@@ -36,7 +36,6 @@ if (datastore.myClient.email != email){
 
 
 
-
 signUp(email, firstName, lastName, patronymic, phone, password, datastore){
   // create a client entity in the database with the given email and password pair,
   // this should be somehow encrypted probably
@@ -46,18 +45,6 @@ Client newClient = Client(email: email, firstName: firstName, lastName: lastName
 datastore.setNewClient = newClient;
 }
 
-
-//Create a single object holding data for the application
-// createDataStore(){
-//   // create Client object from db
-// Client myClient = Client();
-//   // create LoyaltyProgram object from db
-// LoyaltyProgram loyaltyProgram = LoyaltyProgram();
-//   // create BonusAccount object from db
-// BonusAccount bonusAccount = BonusAccount(); 
-//   // createDataStore
-// DataStore datastore = DataStore(myClient, loyaltyProgram, bonusAccount);
-// }
 
 
 // MOCKUP BEFORE THE ACTUAL DB IS CONNECTED
@@ -136,7 +123,6 @@ void dbUpdate(DataStore datastore, int bonusSpent, int buySum, int level, String
     datastore.bonusAccount.setBonuses(y); 
     Purchase purchase = Purchase(buySum, bonusSpent, level, earnedBonus, store); 
     datastore.bonusAccount.purchaseHistory.add(purchase);
-    // TODO return success message
 }
 
 // counts bonuses based on the price of buy
