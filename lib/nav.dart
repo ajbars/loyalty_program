@@ -1,13 +1,18 @@
+import 'package:bottombar/models/dataStore.model.dart';
 import 'package:flutter/material.dart';
 
 import 'cabinet.dart';
 
 class Nav extends StatefulWidget {
+  DataStore datastore;
+  Nav({this.datastore});
+//TODO Not sure this is needed here, perhaps will remove 
   @override
   _NavState createState() => _NavState();
 }
 
 class _NavState extends State<Nav> {
+
   int _selectedIndex = 0;
   List<Widget> _widgetOptions = <Widget>[
 Home(),

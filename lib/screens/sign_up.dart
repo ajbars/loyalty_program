@@ -1,5 +1,6 @@
-
+import "dart:io";
 import 'package:bottombar/models/dataStore.model.dart';
+import 'package:bottombar/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -7,7 +8,7 @@ import '../controller.dart';
 import '../nav.dart';
 
 Controller controller = Controller();
-final login = TextEditingController();
+final emailStr = TextEditingController();
 final password = TextEditingController();
 final password2 = TextEditingController();
 final nameStr = TextEditingController();
@@ -35,7 +36,7 @@ class _SignUpState extends State<SignUp> {
           child: Column(
             children: [
               SizedBox(height: 200),
-                     TextField(controller: login,
+                     TextField(controller: emailStr,
                      decoration: InputDecoration(
                        labelText: "e-mail"
                      ),),
@@ -73,31 +74,36 @@ class _SignUpState extends State<SignUp> {
                          width: 100.0,
                          child: ElevatedButton(
                            onPressed: (){
-String answer = controller.login(login.text, password.text, widget.datastore);
-if (answer == "bad email"){
-   Fluttertoast.showToast(
-              msg: 'Неправильный e-mail',
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.CENTER,
-              timeInSecForIosWeb: 2,
-              backgroundColor: Colors.red,
-              textColor: Colors.white,
-              webPosition: "center");
-} else if (answer == "bad password"){
+                             print(nameStr);
+                             print(password);
+                             print(password2);
+                             bool signUpSuccess = controller.signUp(emailStr.text, nameStr.text, lastNameStr.text, patronymicStr.text, telNumStr.text, password.text, password2.text, datastore);
+                             if (signUpSuccess == true) {
 Fluttertoast.showToast(
-              msg: 'Неправильный пароль',
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.CENTER,
-              timeInSecForIosWeb: 2,
-              backgroundColor: Colors.red,
-              textColor: Colors.white,
-              webPosition: "center");
-} else {
+          msg: 'Вы успешно зарегистрировались!',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 2,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          webPosition: "center");
+          sleep(const Duration(seconds: 3));
 Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => Nav()),
-  );}
-                         }, 
+    context,
+    MaterialPageRoute(builder: (context) => Nav(datastore: datastore))
+);
+
+                             } else {
+                               Fluttertoast.showToast(
+          msg: 'Введенные пароли не совпадают!',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 2,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          webPosition: "center");
+                             }
+                           }, 
                          child: Text("Регистрация")),
                        ),
                      ),

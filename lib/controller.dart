@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:bottombar/models/bonus_account.model.dart';
 import 'package:bottombar/models/loyalty_program.model.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'models/client.model.dart';
 import 'models/dataStore.model.dart';
 import 'models/purchase.model.dart';
@@ -36,13 +37,19 @@ if (datastore.myClient.email != email){
 
 
 
-signUp(email, firstName, lastName, patronymic, phone, password, datastore){
+signUp(email, firstName, lastName, patronymic, phone, password, password2, datastore){
   // create a client entity in the database with the given email and password pair,
-  // this should be somehow encrypted probably
+  if (password == password2){
 Client newClient = Client(email: email, firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone, password: password);
 // print (datastore.myClient.setNewClient());
 // print(in());
 datastore.setNewClient = newClient;
+return true;
+  } else {
+    return false;
+  }
+
+
 }
 
 

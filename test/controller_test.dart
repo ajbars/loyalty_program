@@ -97,9 +97,13 @@ test("SignUp method", (){
 Controller controller = Controller();
 DataStore datastore = controller.createDataStoreMock();
 // final Map<String, String> 
-controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила", "104224", "дубашуба", datastore);
+controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила", "104224", "дубашуба", "дубашуба", datastore);
 expect(datastore.myClient.phone, "104224");
 expect(datastore.myClient.firstName, "Пётр");
+bool check = controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила", "104224", "дубашуба", "дубашуба", datastore);
+expect(check, true);
+bool check2 = controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила", "104224", "дубашуба", "11111", datastore);
+expect(check2, false);
 });
 
 
@@ -107,7 +111,7 @@ test("LogIn method", (){
 Controller controller = Controller();
 DataStore datastore = controller.createDataStoreMock();
 // final Map<String, String> 
-controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила", "104224", "дубашуба", datastore);
+controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила", "104224", "дубашуба", "дубашуба", datastore);
 String wrongEmail = controller.login("ioann@sich.ua", "дубашуба", datastore);
 String correctPassword = controller.login("piotr@sich.ua", "дубашуба", datastore);
 String wrongPassword = controller.login("piotr@sich.ua", "шубадуба", datastore);
