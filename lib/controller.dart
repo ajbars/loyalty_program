@@ -1,12 +1,9 @@
 import 'dart:math';
 import 'package:bottombar/models/bonus_account.model.dart';
 import 'package:bottombar/models/loyalty_program.model.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'models/client.model.dart';
 import 'models/dataStore.model.dart';
 import 'models/purchase.model.dart';
-
-import 'dart:developer';
 
 class Controller{
 // data struct check or createlogin method
@@ -38,9 +35,15 @@ if (datastore.myClient.email != email){
 
 
 signUp(email, firstName, lastName, patronymic, phone, password, password2, datastore){
+  String cardNum = "";
+  var rnd = Random(9);
+for(int i = 1; i <= 6; ++i){
+  int num = rnd.nextInt(9);
+  cardNum += num.toString();
+}
   // create a client entity in the database with the given email and password pair,
   if (password == password2){
-Client newClient = Client(email: email, firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone, password: password);
+Client newClient = Client(email: email, firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone, password: password, cardNum: cardNum);
 // print (datastore.myClient.setNewClient());
 // print(in());
 datastore.setNewClient = newClient;
@@ -63,8 +66,17 @@ createDataStoreMock(){
   String phone = "223322";
   String email = "ivo_solzh@gmail.com";
   String password = "шубадуба";
+  String cardNum = "";
 
-Client myClient = Client(email: email, firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone, password: password);
+var rnd = Random(9);
+for(int i = 0; i <= 6; ++i){
+  int num = rnd.nextInt(9);
+  cardNum += num.toString();
+}
+print("NOMER KARTY: $cardNum");
+
+
+Client myClient = Client(email: email, firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone, password: password, cardNum: cardNum);
   // create LoyaltyProgram object from db
   String name = "Бодрый кролик";
   String description = "Вы присоединяетесь к программе, устанавливая приложение и создавая учетную запись.\n При покупке в данном магазине 1 бонус равен 1 рублю.\nБонусы используются при каждой покупке\n(1) на каждые потраченные 10 рублей вы получаете 1 бонус, до 500 рублей\n(2)при покупке от 500 рублей за каждые 10 рублей добавляются 2 бонуса\n (3) при покупке от 1000 рублей за каждые 10 рублей добавляются 3 бонуса\n Все операции программы лояльности производятся только в приложении.";

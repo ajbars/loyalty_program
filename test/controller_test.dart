@@ -100,11 +100,15 @@ DataStore datastore = controller.createDataStoreMock();
 controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила", "104224", "дубашуба", "дубашуба", datastore);
 expect(datastore.myClient.phone, "104224");
 expect(datastore.myClient.firstName, "Пётр");
+expect(datastore.myClient.cardNum.length, 6);
 bool check = controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила", "104224", "дубашуба", "дубашуба", datastore);
 expect(check, true);
 bool check2 = controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила", "104224", "дубашуба", "11111", datastore);
 expect(check2, false);
-});
+
+}
+
+);
 
 
 test("LogIn method", (){
@@ -115,9 +119,9 @@ controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила
 String wrongEmail = controller.login("ioann@sich.ua", "дубашуба", datastore);
 String correctPassword = controller.login("piotr@sich.ua", "дубашуба", datastore);
 String wrongPassword = controller.login("piotr@sich.ua", "шубадуба", datastore);
-expect(wrongEmail, "Wrong email. Please correct or register");
-expect(correctPassword, "Login successful!");
-expect(wrongPassword, "Wrong password");
+expect(wrongEmail, "bad email");
+expect(correctPassword, "success");
+expect(wrongPassword, "bad password");
 });
 
 
