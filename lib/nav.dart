@@ -1,21 +1,19 @@
 import 'package:bottombar/models/dataStore.model.dart';
 import 'package:flutter/material.dart';
 
-import 'cabinet.dart';
+import 'screens/cabinet.dart';
 
 class Nav extends StatefulWidget {
   DataStore datastore;
-  Nav({this.datastore});
-//TODO Not sure this is needed here, perhaps will remove 
+  Nav({Key key, this.datastore}) : super(key: key);
   @override
   _NavState createState() => _NavState();
 }
 
 class _NavState extends State<Nav> {
-
   int _selectedIndex = 0;
   List<Widget> _widgetOptions = <Widget>[
-Home(),
+Cabinet(),
 Text('Messages'),
 Text('Profile')
   ];
