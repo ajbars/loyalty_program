@@ -29,6 +29,7 @@ class Client {
     this.phone,
     this.password
   });
+  
 
   String get name => this.firstName;
   // TODO change to private

@@ -93,8 +93,6 @@ Timer(Duration(seconds: 2), () {
     MaterialPageRoute(builder: (context) => Nav(datastore: datastore))
 );
 });
-
-
                              } else {
                                Fluttertoast.showToast(
           msg: 'Введенные пароли не совпадают!',
