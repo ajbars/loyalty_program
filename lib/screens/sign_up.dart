@@ -90,7 +90,7 @@ Fluttertoast.showToast(
 Timer(Duration(seconds: 2), () {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => Nav(datastore: datastore))
+    MaterialPageRoute(builder: (context) => Nav())
 );
 });
                              } else {

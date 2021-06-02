@@ -1,4 +1,5 @@
 import 'package:bottombar/models/dataStore.model.dart';
+import 'package:bottombar/screens/login.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/cabinet.dart';
@@ -13,7 +14,7 @@ class Nav extends StatefulWidget {
 class _NavState extends State<Nav> {
   int _selectedIndex = 0;
   List<Widget> _widgetOptions = <Widget>[
-Cabinet(),
+Cabinet(datastore: datastore),
 Text('Messages'),
 Text('Profile')
   ];

@@ -69,7 +69,7 @@ createDataStoreMock(){
   String cardNum = "";
 
 var rnd = Random(9);
-for(int i = 0; i <= 6; ++i){
+for(int i = 0; i <= 5; ++i){
   int num = rnd.nextInt(9);
   cardNum += num.toString();
 }

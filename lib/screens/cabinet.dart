@@ -14,21 +14,40 @@ class Cabinet extends StatefulWidget {
 class _CabinetState extends State<Cabinet> {
   @override
   Widget build(BuildContext context) {
-  var client = datastore.myClient;
-  var loyalty = datastore.loyaltyProgram;
+    var client = widget.datastore.myClient;
+    var loyalty = widget.datastore.loyaltyProgram;
     return Scaffold(
-      body: Column(
-        children: [
-          Text(client.email),
-          Text(client.lastName),
-          Text(client.lastName),
-          //TODO date of birth
-          Text(loyalty.name),
-          Text(client.phone)
-
-        ],
-      )
-      
-    );
+        body: Center(
+      child: Card(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // SizedBox(height:30),
+            ListTile(
+              title: Text("E-mail:"),
+              subtitle: Text("${client.email}"),
+              leading: Icon(
+                Icons.email_rounded,
+                color: Colors.blue[500],
+              ),
+            ),
+            Divider(),
+            ListTile(title: Text("Имя: "), subtitle: Text("${client.firstName}"), leading: Icon(Icons.person, color: Colors.blue[500])),
+            Divider(),
+            ListTile(title: Text("Oтчество: "), subtitle: Text("${client.patronymic}"), leading: Icon(Icons.person, color: Colors.blue[500])),
+            Divider(),
+            ListTile(title: Text("Фамилия: "), subtitle: Text("${client.lastName}"),leading: Icon(Icons.person, color: Colors.blue[500])),
+            Divider(),
+            //TODO date of birth
+            ListTile(title: Text("Программа лояльности: "), subtitle: Text("${loyalty.name}"), leading: Icon(Icons.local_grocery_store_outlined, color: Colors.blue[500]),),
+            Divider(),
+            ListTile(title: Text("Телефон: "), subtitle: Text("${client.phone}"), leading: Icon(Icons.phone, color: Colors.blue[500])),
+            Divider(),
+            ListTile(title: Text("Номер карты: "), subtitle: Text("${client.cardNum}"), leading: Icon(Icons.credit_card),),
+          ],
+        ),
+      ),
+    ));
   }
 }
