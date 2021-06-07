@@ -41,6 +41,21 @@ for(int i = 1; i <= 6; ++i){
   int num = rnd.nextInt(9);
   cardNum += num.toString();
 }
+
+ DateTime selectedDate = DateTime.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });
+  }
+
   // create a client entity in the database with the given email and password pair,
   if (password == password2){
 Client newClient = Client(email: email, firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone, password: password, cardNum: cardNum);

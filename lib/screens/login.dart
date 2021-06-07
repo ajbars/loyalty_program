@@ -21,11 +21,11 @@ class LogIn extends StatelessWidget {
     var gadgetSize = MediaQuery.of(context).size;
     return Scaffold(
           body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: gadgetSize.width * 0.3),
+            padding: EdgeInsets.symmetric(horizontal: gadgetSize.width * 0.2),
             child: Center(
               child: Column(
                 children: [
-                 SizedBox(height: 200),
+                 SizedBox(height: 400),
                  TextField(controller: login,
                  decoration: InputDecoration(
                    labelText: "e-mail"
@@ -38,7 +38,7 @@ class LogIn extends StatelessWidget {
                  Padding(
                    padding: const EdgeInsets.only(top: 30.0),
                    child: SizedBox(
-                     width: 100.0,
+                     width: 150.0,
                      child: ElevatedButton(
                        onPressed: (){
 String answer = controller.login(login.text, password.text, datastore);
@@ -63,7 +63,7 @@ Fluttertoast.showToast(
 } else {
 Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => Nav()),
+    MaterialPageRoute(builder: (context) => Nav(datastore: datastore, selectedIndex: 0)),
   );}
                      }, 
                      child: Text("Вход")),
@@ -72,7 +72,7 @@ Navigator.push(
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),
                   child: SizedBox(
-                    width: 100.0,
+                    width: 150.0,
                     child: ElevatedButton(
                       child: Text("Регистрация"),
                       onPressed: (){
