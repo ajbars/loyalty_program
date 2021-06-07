@@ -26,6 +26,7 @@ dependencies:
   sqflite: any
   path_provider: any
   fluttertoast: ^7.0.2
+  date_time_picker: "^2.0.0"
 
 
 

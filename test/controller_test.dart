@@ -1,6 +1,7 @@
 import 'package:bottombar/controller.dart';
 import 'package:bottombar/models/dataStore.model.dart';
 import 'package:bottombar/models/purchase.model.dart';
+import 'package:bottombar/screens/sign_up.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -97,13 +98,13 @@ test("SignUp method", (){
 Controller controller = Controller();
 DataStore datastore = controller.createDataStoreMock();
 // final Map<String, String> 
-controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила", "104224", "дубашуба", "дубашуба", datastore);
+controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила", "104224", "дубашуба", "дубашуба", datastore, birthDate);
 expect(datastore.myClient.phone, "104224");
 expect(datastore.myClient.firstName, "Пётр");
 expect(datastore.myClient.cardNum.length, 6);
-bool check = controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила", "104224", "дубашуба", "дубашуба", datastore);
+bool check = controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила", "104224", "дубашуба", "дубашуба", datastore, birthDate);
 expect(check, true);
-bool check2 = controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила", "104224", "дубашуба", "11111", datastore);
+bool check2 = controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила", "104224", "дубашуба", "11111", datastore, birthDate);
 expect(check2, false);
 print(new DateTime.utc(1976,3,4,12,2,2)
             .toString()
@@ -118,7 +119,7 @@ test("LogIn method", (){
 Controller controller = Controller();
 DataStore datastore = controller.createDataStoreMock();
 // final Map<String, String> 
-controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила", "104224", "дубашуба", "дубашуба", datastore);
+controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила", "104224", "дубашуба", "дубашуба", datastore, birthDate);
 String wrongEmail = controller.login("ioann@sich.ua", "дубашуба", datastore);
 String correctPassword = controller.login("piotr@sich.ua", "дубашуба", datastore);
 String wrongPassword = controller.login("piotr@sich.ua", "шубадуба", datastore);
