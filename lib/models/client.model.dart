@@ -18,6 +18,7 @@ class Client {
   String phone;
   String password;
   String cardNum;
+  DateTime birthDate;
 
 
 
@@ -28,7 +29,8 @@ class Client {
     this.patronymic,
     this.phone,
     this.password,
-    this.cardNum
+    this.cardNum,
+    this.birthDate
   });
 
 

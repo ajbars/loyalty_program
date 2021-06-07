@@ -105,7 +105,10 @@ bool check = controller.signUp("piotr@sich.ua", "Пётр", "Иванович", 
 expect(check, true);
 bool check2 = controller.signUp("piotr@sich.ua", "Пётр", "Иванович", "Могила", "104224", "дубашуба", "11111", datastore);
 expect(check2, false);
-
+print(new DateTime.utc(1976,3,4,12,2,2)
+            .toString()
+            .substring(0,10)
+     );
 }
 
 );
@@ -122,6 +125,7 @@ String wrongPassword = controller.login("piotr@sich.ua", "шубадуба", dat
 expect(wrongEmail, "bad email");
 expect(correctPassword, "success");
 expect(wrongPassword, "bad password");
+
 });
 
 

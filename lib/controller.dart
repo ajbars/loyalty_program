@@ -34,31 +34,17 @@ if (datastore.myClient.email != email){
 
 
 
-signUp(email, firstName, lastName, patronymic, phone, password, password2, datastore){
+signUp(email, firstName, lastName, patronymic, phone, password, password2, datastore, birthDate){
   String cardNum = "";
   var rnd = Random(9);
 for(int i = 1; i <= 6; ++i){
   int num = rnd.nextInt(9);
   cardNum += num.toString();
 }
-
- DateTime selectedDate = DateTime.now();
-
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
-    if (picked != null && picked != selectedDate)
-      setState(() {
-        selectedDate = picked;
-      });
-  }
-
-  // create a client entity in the database with the given email and password pair,
+birthDate = DateTime.utc(1976,6,4);
+ // create a client entity in the database with the given email and password pair,
   if (password == password2){
-Client newClient = Client(email: email, firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone, password: password, cardNum: cardNum);
+Client newClient = Client(email: email, firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone, password: password, cardNum: cardNum, birthDate: birthDate);
 // print (datastore.myClient.setNewClient());
 // print(in());
 datastore.setNewClient = newClient;
@@ -66,8 +52,6 @@ return true;
   } else {
     return false;
   }
-
-
 }
 
 
@@ -91,7 +75,10 @@ for(int i = 0; i <= 5; ++i){
 print("NOMER KARTY: $cardNum");
 
 
-Client myClient = Client(email: email, firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone, password: password, cardNum: cardNum);
+ DateTime birthDate = DateTime.utc(1965,7,20,20,18,04);
+
+
+Client myClient = Client(email: email, firstName: firstName, lastName: lastName, patronymic: patronymic, phone: phone, password: password, cardNum: cardNum, birthDate: birthDate);
   // create LoyaltyProgram object from db
   String name = "Бодрый кролик";
   String description = "Вы присоединяетесь к программе, устанавливая приложение и создавая учетную запись.\n При покупке в данном магазине 1 бонус равен 1 рублю.\nБонусы используются при каждой покупке\n(1) на каждые потраченные 10 рублей вы получаете 1 бонус, до 500 рублей\n(2)при покупке от 500 рублей за каждые 10 рублей добавляются 2 бонуса\n (3) при покупке от 1000 рублей за каждые 10 рублей добавляются 3 бонуса\n Все операции программы лояльности производятся только в приложении.";
