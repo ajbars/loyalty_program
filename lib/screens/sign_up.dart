@@ -4,7 +4,6 @@ import 'package:bottombar/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:date_time_picker/date_time_picker.dart';
-
 import '../controller.dart';
 import '../nav.dart';
 
@@ -17,6 +16,7 @@ final lastNameStr = TextEditingController();
 final patronymicStr = TextEditingController();
 final telNumStr = TextEditingController();
 DateTime birthDate;
+
 
 class SignUp extends StatefulWidget {
   DataStore datastore;
@@ -70,15 +70,16 @@ class _SignUpState extends State<SignUp> {
                      decoration: InputDecoration(
                        labelText: "Номер телефона"
                      )),
+                     Text("Дата рождения:"),
 DateTimePicker(
+  locale: ru,
   type: DateTimePickerType.dateTimeSeparate,
   dateMask: 'd MMM, yyyy',
   initialValue: DateTime.now().toString(),
   firstDate: DateTime(2000),
   lastDate: DateTime(2100),
   icon: Icon(Icons.event),
-  dateLabelText: 'Date',
-  timeLabelText: "Hour",
+  dateLabelText: 'Дата',
   selectableDayPredicate: (date) {
     // Disable weekend days to select from the calendar
     if (date.weekday == 6 || date.weekday == 7) {

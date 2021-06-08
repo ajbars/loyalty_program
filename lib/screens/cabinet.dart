@@ -74,8 +74,12 @@ class _CabinetState extends State<Cabinet> {
             ListTile(
                 title: Text("Номер карты: "),
                 trailing: Text("${client.cardNum}"),
-                leading: Icon(Icons.credit_card)),
+                leading: Icon(Icons.credit_card, color: Colors.blue[500])),
             Divider(),
+                        ListTile(
+                title: Text("Дата рождения: "),
+                trailing: Text("${client.birthDate.toString().substring(0,10)}"),
+                leading: Icon(Icons.calendar_today, color: Colors.blue[500])),
             ListTile(
               title: Center(
                   child: TextButton(
