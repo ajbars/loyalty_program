@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import '../controller.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import '../nav.dart';
+
 
 Controller controller = Controller();
 final emailStr = TextEditingController();
@@ -26,16 +28,14 @@ class SignUp extends StatefulWidget {
 }
 
 
-
 class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     var gadgetSize = MediaQuery.of(context).size;
     return Scaffold(
-          body: Material(
-            child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: gadgetSize.width * 0.3),
-          child: Column(
+            body: Padding(
+            padding: EdgeInsets.symmetric(horizontal: gadgetSize.width * 0.3),
+            child: Column(
             children: [
               SizedBox(height: 200),
                      TextField(controller: emailStr,
@@ -53,7 +53,6 @@ class _SignUpState extends State<SignUp> {
                      decoration: InputDecoration(
                        labelText: "Пароль повторно"
                      )),
-                     // TODO check if passwords are identical
                      TextField(controller: nameStr, 
                      decoration: InputDecoration(
                        labelText: "Имя"
@@ -72,26 +71,25 @@ class _SignUpState extends State<SignUp> {
                      )),
                      Text("Дата рождения:"),
 DateTimePicker(
-  locale: ru,
-  type: DateTimePickerType.dateTimeSeparate,
-  dateMask: 'd MMM, yyyy',
-  initialValue: DateTime.now().toString(),
-  firstDate: DateTime(2000),
-  lastDate: DateTime(2100),
+  locale: const Locale ('ru'),
+  type: DateTimePickerType.date,
+  dateMask: 'd MMM yyyy',
+  initialValue: DateTime(1910).toString(),
+  firstDate: DateTime(1990),
+  lastDate: DateTime(2003),
   icon: Icon(Icons.event),
   dateLabelText: 'Дата',
   selectableDayPredicate: (date) {
-    // Disable weekend days to select from the calendar
-    if (date.weekday == 6 || date.weekday == 7) {
-      return false;
-    }
-
-    return true;
+      // Disable weekend days to select from the calendar
+      if (date.weekday == 6 || date.weekday == 7) {
+        return false;
+      }
+      return true;
   },
   onChanged: (val) => print(val),
   validator: (val) {
-    print(val);
-    return null;
+      print(val);
+      return null;
   },
   onSaved: (val) => print(val),
 ),
@@ -100,35 +98,32 @@ DateTimePicker(
                        child: SizedBox(
                          width: 100.0,
                          child: ElevatedButton(
-                           onPressed: (){
-                             print(nameStr);
-                             print(password);
-                             print(password2);
-                             bool signUpSuccess = controller.signUp(emailStr.text, nameStr.text, lastNameStr.text, patronymicStr.text, telNumStr.text, password.text, password2.text, datastore, birthDate);
+                           onPressed: (){ 
+                            bool signUpSuccess = controller.signUp(emailStr.text, nameStr.text, lastNameStr.text, patronymicStr.text, telNumStr.text, password.text, password2.text, datastore, birthDate);
                              if (signUpSuccess == true) {
 Fluttertoast.showToast(
-          msg: 'Вы успешно зарегистрировались!',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 2,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          webPosition: "center");
+            msg: 'Вы успешно зарегистрировались!',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 2,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            webPosition: "center");
 Timer(Duration(seconds: 2), () {
   Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => Nav())
+      context,
+      MaterialPageRoute(builder: (context) => Nav())
 );
 });
                              } else {
                                Fluttertoast.showToast(
-          msg: 'Введенные пароли не совпадают!',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 2,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          webPosition: "center");
+            msg: 'Введенные пароли не совпадают!',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 2,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            webPosition: "center");
                              }
                            }, 
                          child: Text("Регистрация")),
@@ -137,9 +132,8 @@ Timer(Duration(seconds: 2), () {
             ],
 
             
+            ),
           ),
-        ),
-      ),
-    );
+      );
   }
 }
