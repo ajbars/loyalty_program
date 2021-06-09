@@ -74,18 +74,11 @@ DateTimePicker(
   locale: const Locale ('ru'),
   type: DateTimePickerType.date,
   dateMask: 'd MMM yyyy',
-  initialValue: DateTime(1910).toString(),
-  firstDate: DateTime(1990),
-  lastDate: DateTime(2003),
+  initialValue: DateTime(1980).toString(),
+  firstDate: DateTime(1910),
+  lastDate: DateTime(2003,12,31),
   icon: Icon(Icons.event),
   dateLabelText: 'Дата',
-  selectableDayPredicate: (date) {
-      // Disable weekend days to select from the calendar
-      if (date.weekday == 6 || date.weekday == 7) {
-        return false;
-      }
-      return true;
-  },
   onChanged: (val) => print(val),
   validator: (val) {
       print(val);
