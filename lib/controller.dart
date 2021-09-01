@@ -22,7 +22,7 @@ login(String email, String password, DataStore datastore){
 //if not, show toast 'email not in db please register'
 //Check whether password is correct for this email
 //if not, show toast 'wrong password'
-//if yes, Navigator to Cabinet screen
+//if yes, Navigator to Profile screen
 if (datastore.myClient.email != email){
   return("bad email");
 } else if (datastore.myClient.password != password) {
@@ -96,6 +96,7 @@ newPurchase(DataStore datastore, int level){
   Random random = new Random();
   int buySum;
   int bonusSpent;
+  DateTime buyDateAndTime = DateTime.now();
   
 // generate a random index based on the list length
 // and use it to retrieve the element
@@ -108,28 +109,28 @@ switch (level){
   case 1: {
     buySum = random.nextInt(500) + 1; // from 1 to 499
     bonusSpent = random.nextInt(50); 
-    dbUpdate(datastore, bonusSpent, buySum, level, store);
+    dbUpdate(datastore, bonusSpent, buySum, level, store, buyDateAndTime);
   }
   break;
 
   case 2:{
     buySum = random.nextInt(500) + 500; // from 500 to 999 included
     bonusSpent = random.nextInt(100); 
-    dbUpdate(datastore, bonusSpent, buySum, level, store);
+    dbUpdate(datastore, bonusSpent, buySum, level, store, buyDateAndTime);
   }
   break;
 
   case 3:{
     buySum = random.nextInt(9000) + 1000; // from  1000 to 9999 included
     bonusSpent = random.nextInt(200); 
-    dbUpdate(datastore, bonusSpent, buySum, level, store);
+    dbUpdate(datastore, bonusSpent, buySum, level, store, buyDateAndTime);
   }
   break;
 }
 }
 
 // Adds the new purchase to db
-void dbUpdate(DataStore datastore, int bonusSpent, int buySum, int level, String store){
+void dbUpdate(DataStore datastore, int bonusSpent, int buySum, int level, String store, DateTime buyDateAndTime){
       if (datastore.bonusAccount.currentBonuses < bonusSpent) { // If 'bonuses spent' random number is bigger than current bonuses in the account
         bonusSpent = datastore.bonusAccount.currentBonuses;
         datastore.bonusAccount.setBonuses(0);
@@ -142,7 +143,7 @@ void dbUpdate(DataStore datastore, int bonusSpent, int buySum, int level, String
     // Adding earned bonuses to the account
     int y = datastore.bonusAccount.currentBonuses + earnedBonus;
     datastore.bonusAccount.setBonuses(y); 
-    Purchase purchase = Purchase(buySum, bonusSpent, level, earnedBonus, store); 
+    Purchase purchase = Purchase(buySum, bonusSpent, level, earnedBonus, store, buyDateAndTime); 
     datastore.bonusAccount.purchaseHistory.add(purchase);
 }
 

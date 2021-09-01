@@ -63,7 +63,7 @@ Fluttertoast.showToast(
 } else {
 Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => Nav(datastore: datastore, selectedIndex: 0)),
+    MaterialPageRoute(builder: (context) => Nav(datastore: datastore, selectedIndex: 0, key: ObjectKey(datastore))),
   );}
                      }, 
                      child: Text("Вход")),

@@ -23,14 +23,14 @@ class Client {
 
 
   Client({
-    this.email,
-    this.firstName,
-    this.lastName,
-    this.patronymic,
-    this.phone,
-    this.password,
-    this.cardNum,
-    this.birthDate
+    required this.email,
+    required this.firstName,
+    required this.lastName,
+    required this.patronymic,
+    required this.phone,
+    required this.password,
+    required this.cardNum,
+    required this.birthDate
   });
 
 

@@ -52,7 +52,7 @@ test('testing dbUpdate for creating a purchase object in purchaseHistory', () {
 Controller controller = Controller();
 DataStore datastore = controller.createDataStoreMock();
 // void dbUpdate(DataStore datastore, int bonusSpent, int buySum, int level, String store)
-controller.dbUpdate(datastore, 10, 1000, 3, "Snusmumrik");
+controller.dbUpdate(datastore, 10, 1000, 3, "Snusmumrik", DateTime.now());
 expect(datastore.bonusAccount.purchaseHistory.length > 0, true);
 expect(datastore.bonusAccount.purchaseHistory[0].bonusSpent, 0);
 expect(datastore.bonusAccount.purchaseHistory[0].buySum, 1000);
@@ -72,7 +72,7 @@ controller.newPurchase(datastore, 2);
 controller.newPurchase(datastore, 2);
 controller.newPurchase(datastore, 3);
 controller.newPurchase(datastore, 3);
-final List<Purchase> history = controller.readHistory(datastore);
+final List history = controller.readHistory(datastore);
 for (var i in history){
   print(i.bonusSpent);
   print(i.buySum);
@@ -91,7 +91,7 @@ DataStore datastore = controller.createDataStoreMock();
 // final Map<String, String> 
 var programTerms = controller.programTerms(datastore);
 expect(programTerms["name"], "Бодрый кролик");
-expect(programTerms["desc"].length, 459);
+expect(programTerms["desc"]?.length, 459);
 });
 
 test("SignUp method", (){

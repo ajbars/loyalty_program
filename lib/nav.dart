@@ -2,12 +2,12 @@ import 'package:bottombar/models/dataStore.model.dart';
 import 'package:bottombar/screens/login.dart';
 import 'package:flutter/material.dart';
 
-import 'screens/cabinet.dart';
-
+import 'screens/Profile.dart';
+import 'screens/loyalty.dart';
 class Nav extends StatefulWidget {
   DataStore datastore;
   int selectedIndex;
-  Nav({Key key, this.selectedIndex, this.datastore}) : super(key: key);
+  Nav({Key? key, required this.selectedIndex, required this.datastore});
   @override
   _NavState createState() => _NavState();
 }
@@ -15,15 +15,14 @@ class Nav extends StatefulWidget {
 class _NavState extends State<Nav> {
   List<Widget> _widgetOptions = <Widget>[
 Cabinet(datastore: datastore),
-Text('Messages'),
-Text('Profile')
+Profile(datastore: datastore),
+Text('Cabinet')
   ];
   
   void _onItemTap(int index){
     setState(() {
       widget.selectedIndex = index;
     });
-
   }
 
   @override
@@ -39,7 +38,7 @@ Text('Profile')
                 BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Кабинет"),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Программа")
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Профиль")
           ],
           currentIndex: widget.selectedIndex,
           onTap: _onItemTap,

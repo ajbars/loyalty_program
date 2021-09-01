@@ -16,11 +16,11 @@ final nameStr = TextEditingController();
 final lastNameStr = TextEditingController();
 final patronymicStr = TextEditingController();
 final telNumStr = TextEditingController();
-DateTime birthDate;
+DateTime? birthDate;
 
 class SignUp extends StatefulWidget {
   DataStore datastore;
-  SignUp({this.datastore});
+  SignUp({required this.datastore});
   @override
   _SignUpState createState() => _SignUpState();
 }
@@ -89,7 +89,7 @@ class _SignUpState extends State<SignUp> {
                 },
                 onSaved: (val)
                 {
-                  birthDate = DateTime.parse(val);
+                  birthDate = DateTime.parse(val ?? "Default");
                   },
                 //  => print(val),
               ),

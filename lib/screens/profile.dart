@@ -1,18 +1,19 @@
 import 'package:bottombar/controller.dart';
 import 'package:bottombar/models/dataStore.model.dart';
 import 'package:bottombar/nav.dart';
+import 'package:bottombar/screens/login.dart';
 import 'package:flutter/material.dart';
 
 Controller controller = Controller();
 
-class Cabinet extends StatefulWidget {
+class Profile extends StatefulWidget {
   DataStore datastore;
-  Cabinet({this.datastore});
+  Profile({required this.datastore});
   @override
-  _CabinetState createState() => _CabinetState();
+  _ProfileState createState() => _ProfileState();
 }
 
-class _CabinetState extends State<Cabinet> {
+class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     var client = widget.datastore.myClient;
@@ -58,7 +59,7 @@ class _CabinetState extends State<Cabinet> {
                     setState(() {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (_) => Nav(
-                                selectedIndex: 1,
+                                selectedIndex: 1, datastore: datastore,
                               )));
                     });
                   }),

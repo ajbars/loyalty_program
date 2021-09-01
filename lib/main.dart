@@ -15,9 +15,9 @@ class MyApp extends StatelessWidget {
     GlobalCupertinoLocalizations.delegate,
   ],
   supportedLocales: [
-    const Locale('ru', 'RU') // English, no country code
+    const Locale('ru', 'RU') 
   ],
-      title: 'Bottom Navigation Bar',
+      title: 'Программа лояльности',
       home: LogIn()
     );
   }
