@@ -11,12 +11,9 @@ class Cabinet extends StatelessWidget {
   ) : super(key: key);
 
 
-final purchaseHistory = datastore.bonusAccount.purchaseHistory;
-
-
-
   @override
   Widget build(BuildContext context) {
+    final purchaseHistory = datastore.bonusAccount.purchaseHistory;
     return Container(child:
 ListView.builder(
   itemCount: purchaseHistory.length,

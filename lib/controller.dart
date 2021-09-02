@@ -84,7 +84,7 @@ Client myClient = Client(email: email, firstName: firstName, lastName: lastName,
   String description = "Вы присоединяетесь к программе, устанавливая приложение и создавая учетную запись.\n При покупке в данном магазине 1 бонус равен 1 рублю.\nБонусы используются при каждой покупке\n(1) на каждые потраченные 10 рублей вы получаете 1 бонус, до 500 рублей\n(2)при покупке от 500 рублей за каждые 10 рублей добавляются 2 бонуса\n (3) при покупке от 1000 рублей за каждые 10 рублей добавляются 3 бонуса\n Все операции программы лояльности производятся только в приложении.";
 LoyaltyProgram loyaltyProgram = LoyaltyProgram(name, description);
   // create BonusAccount object from db
-BonusAccount bonusAccount = BonusAccount(0); 
+BonusAccount bonusAccount = BonusAccount(0,[Purchase(11,19,2,21,"Гавнюшка",DateTime.now())]); //TODO прочтение из базы истории покупок  
   // createDataStore
 DataStore datastore = DataStore(myClient, loyaltyProgram, bonusAccount);
 return datastore;

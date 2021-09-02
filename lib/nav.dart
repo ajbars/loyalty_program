@@ -14,7 +14,7 @@ class Nav extends StatefulWidget {
 
 class _NavState extends State<Nav> {
   List<Widget> _widgetOptions = <Widget>[
-Cabinet(datastore: datastore),
+Cabinet(ObjectKey(datastore), datastore),
 Profile(datastore: datastore),
 Text('Cabinet')
   ];
