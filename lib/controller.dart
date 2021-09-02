@@ -84,7 +84,7 @@ Client myClient = Client(email: email, firstName: firstName, lastName: lastName,
   String description = "Вы присоединяетесь к программе, устанавливая приложение и создавая учетную запись.\n При покупке в данном магазине 1 бонус равен 1 рублю.\nБонусы используются при каждой покупке\n(1) на каждые потраченные 10 рублей вы получаете 1 бонус, до 500 рублей\n(2)при покупке от 500 рублей за каждые 10 рублей добавляются 2 бонуса\n (3) при покупке от 1000 рублей за каждые 10 рублей добавляются 3 бонуса\n Все операции программы лояльности производятся только в приложении.";
 LoyaltyProgram loyaltyProgram = LoyaltyProgram(name, description);
   // create BonusAccount object from db
-BonusAccount bonusAccount = BonusAccount(0,[Purchase(11,19,2,21,"Гавнюшка",DateTime.now())]); //TODO прочтение из базы истории покупок  
+BonusAccount bonusAccount = BonusAccount(0,[Purchase(11,19,2,21,"Котелок",DateTime.now()),Purchase(3,4,22,88,"Обдираловка",DateTime.now())]); //TODO прочтение из базы истории покупок  
   // createDataStore
 DataStore datastore = DataStore(myClient, loyaltyProgram, bonusAccount);
 return datastore;
@@ -96,7 +96,7 @@ newPurchase(DataStore datastore, int level){
   Random random = new Random();
   int buySum;
   int bonusSpent;
-  DateTime buyDateAndTime = DateTime.now();
+  final DateTime now = DateTime.now();
   
 // generate a random index based on the list length
 // and use it to retrieve the element
@@ -109,21 +109,21 @@ switch (level){
   case 1: {
     buySum = random.nextInt(500) + 1; // from 1 to 499
     bonusSpent = random.nextInt(50); 
-    dbUpdate(datastore, bonusSpent, buySum, level, store, buyDateAndTime);
+    dbUpdate(datastore, bonusSpent, buySum, level, store, now);
   }
   break;
 
   case 2:{
     buySum = random.nextInt(500) + 500; // from 500 to 999 included
     bonusSpent = random.nextInt(100); 
-    dbUpdate(datastore, bonusSpent, buySum, level, store, buyDateAndTime);
+    dbUpdate(datastore, bonusSpent, buySum, level, store, now);
   }
   break;
 
   case 3:{
     buySum = random.nextInt(9000) + 1000; // from  1000 to 9999 included
     bonusSpent = random.nextInt(200); 
-    dbUpdate(datastore, bonusSpent, buySum, level, store, buyDateAndTime);
+    dbUpdate(datastore, bonusSpent, buySum, level, store, now);
   }
   break;
 }
