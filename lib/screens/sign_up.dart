@@ -31,7 +31,7 @@ class _SignUpState extends State<SignUp> {
     var gadgetSize = MediaQuery.of(context).size;
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: gadgetSize.width * 0.3),
+        padding: EdgeInsets.symmetric(horizontal: gadgetSize.width * 0.15),
         child: Column(
           children: [
             SizedBox(height: 150),
@@ -97,7 +97,7 @@ class _SignUpState extends State<SignUp> {
             Padding(
               padding: const EdgeInsets.only(top: 40.0),
               child: SizedBox(
-                width: 100.0,
+                // width: 140.0,
                 child: ElevatedButton(
                     onPressed: () {
                       bool signUpSuccess = controller.signUp(
@@ -116,7 +116,7 @@ class _SignUpState extends State<SignUp> {
                             toastLength: Toast.LENGTH_SHORT,
                             gravity: ToastGravity.CENTER,
                             timeInSecForIosWeb: 2,
-                            backgroundColor: Colors.red,
+                            backgroundColor: Colors.green[200],
                             textColor: Colors.white,
                             webPosition: "center");
                         Timer(Duration(seconds: 2), () {
