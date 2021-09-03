@@ -29,8 +29,8 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     var gadgetSize = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Padding(
+    return 
+    Material(child: Padding(
         padding: EdgeInsets.symmetric(horizontal: gadgetSize.width * 0.15),
         child: Column(
           children: [
@@ -139,7 +139,8 @@ class _SignUpState extends State<SignUp> {
             ),
           ],
         ),
-      ),
+      
+    ),
     );
   }
 }

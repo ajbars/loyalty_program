@@ -17,23 +17,25 @@ class Cabinet extends StatelessWidget {
 
   Widget build(BuildContext context) {
     final purchaseHistory = datastore.bonusAccount.purchaseHistory;
-    return Padding(
-      padding: const EdgeInsets.all(14.0),
-      child: Container(child:
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(14.0),
+        child: Container(child:
 ListView.builder(
   itemCount: purchaseHistory.length,
   itemBuilder: (context, index) {
-      return Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-          Text(purchaseHistory[index].buySum.toString()), Text(purchaseHistory[index].bonusSpent.toString()), Text(purchaseHistory[index].earnedBonus.toString()), Text(purchaseHistory[index].level.toString()), Text(purchaseHistory[index].store.toString()), Text(formatter.format(purchaseHistory[index].buyDateAndTime))]
-        ),
-      );
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+            Text(purchaseHistory[index].buySum.toString()), Text(purchaseHistory[index].bonusSpent.toString()), Text(purchaseHistory[index].earnedBonus.toString()), Text(purchaseHistory[index].level.toString()), Text(purchaseHistory[index].store.toString()), Text(formatter.format(purchaseHistory[index].buyDateAndTime))]
+          ),
+        );
   },
 )
 
+        ),
       ),
     );
   }

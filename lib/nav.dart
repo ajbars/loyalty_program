@@ -28,8 +28,8 @@ Text('Cabinet')
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Программа лояльности'),
-      ),
+      // appBar: AppBar(title: Text('Программа лояльности'),
+      // ),
       body: Center(
         child: _widgetOptions.elementAt(widget.selectedIndex)
       )
