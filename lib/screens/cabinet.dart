@@ -23,29 +23,36 @@ class Cabinet extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Container(
               width: MediaQuery.of(context).size.width * 2,
-              child: Table(children: [
+              child: Table(
+                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                border: TableBorder.all(width: 2, color: Colors.blue),
+                children: [
                 TableRow(children: [
-                  Text("Дата покупки"),
-                  Text("Магазин"),
-                  Text("Сумма покупки"),
-                  Text("Программа лояльности"),
-                  Text("Потрачено бонусов"),
-                  Text("Получено бонусов"),
-                  Text("Уровень программы"),
+                  SizedBox(
+                    height: 60,
+                    child: Center(child: Text("Дата покупки"))),
+                  Center(child: Text("Магазин")),
+                  Center(child: Text("Сумма покупки")),
+                  Center(child: Text("Программа")),
+                  Center(child: Text("Потрачено бонусов")),
+                  Center(child: Text("Получено бонусов")),
+                  Center(child: Text("Уровень программы ")),
                 ]),
                 for (final row in purchaseHistory)
                   (TableRow(
 
                     children: [
                     TableCell(
-                      child: Text(formatter.format(row.buyDateAndTime)),
+                      child: SizedBox(
+                        height: 60,
+                        child: Center(child: Text(formatter.format(row.buyDateAndTime)))),
                     ),
-                    TableCell(child: Text(row.store.toString())),
-                    TableCell(child: Text(row.buySum.toString())),
-                    TableCell(child: Text(datastore.loyaltyProgram.name)),
-                    TableCell(child: Text(row.bonusSpent.toString())),
-                    TableCell(child: Text(row.earnedBonus.toString())),
-                    TableCell(child: Text(row.level.toString())),
+                    TableCell(child: Center(child: Text(row.store.toString()))),
+                    TableCell(child: Center(child: Text(row.buySum.toString()))),
+                    TableCell(child: Center(child: Text(datastore.loyaltyProgram.name))),
+                    TableCell(child: Center(child: Text(row.bonusSpent.toString()))),
+                    TableCell(child: Center(child: Text(row.earnedBonus.toString()))),
+                    TableCell(child: Center(child: Text(row.level.toString()))),
                   ]))
               ])),
         ),
@@ -54,20 +61,3 @@ class Cabinet extends StatelessWidget {
   }
 }
 
-
-
-
-
-// ListView.builder(
-//   itemCount: purchaseHistory.length,
-//   itemBuilder: (context, index) {
-//         return Padding(
-//           padding: const EdgeInsets.all(8.0),
-//           child: TableRow(
-//             mainAxisAlignment: MainAxisAlignment.spaceAround,
-//             children: [
-//             Text(purchaseHistory[index].buySum.toString()), Text(purchaseHistory[index].bonusSpent.toString()), Text(purchaseHistory[index].earnedBonus.toString()), Text(purchaseHistory[index].level.toString()), Text(purchaseHistory[index].store.toString()), Text(formatter.format(purchaseHistory[index].buyDateAndTime))]
-//           ),
-//         );
-//   },
-// )
