@@ -25,9 +25,7 @@ class Cabinet extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 2,
               child: Table(children: [
                 TableRow(children: [
-                  SizedBox(
-                    height: 50,
-                    child: Text("Дата покупки")),
+                  Text("Дата покупки"),
                   Text("Магазин"),
                   Text("Сумма покупки"),
                   Text("Программа лояльности"),
@@ -37,12 +35,10 @@ class Cabinet extends StatelessWidget {
                 ]),
                 for (final row in purchaseHistory)
                   (TableRow(
+
                     children: [
-                    SizedBox(
-                      height: 50,
-                      child: TableCell(
-                        child: Text(formatter.format(row.buyDateAndTime)),
-                      ),
+                    TableCell(
+                      child: Text(formatter.format(row.buyDateAndTime)),
                     ),
                     TableCell(child: Text(row.store.toString())),
                     TableCell(child: Text(row.buySum.toString())),
