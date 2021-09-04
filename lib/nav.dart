@@ -3,7 +3,7 @@ import 'package:bottombar/screens/login.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/Profile.dart';
-import 'screens/loyalty.dart';
+import 'screens/cabinet.dart';
 class Nav extends StatefulWidget {
   DataStore datastore;
   int selectedIndex;

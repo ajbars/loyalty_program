@@ -14,7 +14,7 @@ import 'bonus_account.model.dart';
 
 class DataStore {
   Client _myClient;
-  LoyaltyProgram _loyaltyProgram;
+  LoyaltyProgram _loyaltyProgram; //TODO make two loyalty programs
   BonusAccount _bonusAccount;
 
 
