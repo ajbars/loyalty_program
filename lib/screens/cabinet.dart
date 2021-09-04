@@ -12,27 +12,43 @@ class Cabinet extends StatelessWidget {
 
   @override
   // final DateFormat formatter = DateFormat('yyyy-MM-dd hh:mm:ss');
-    final DateFormat formatter = DateFormat('yyyy-MM-dd');
-
+  final DateFormat formatter = DateFormat('yyyy-MM-dd');
 
   Widget build(BuildContext context) {
     final purchaseHistory = datastore.bonusAccount.purchaseHistory;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(14.0),
-        child: Container(
-            child: Table(children: [
-          for (final row in purchaseHistory)
-            (TableRow(children: [
-              Text(formatter.format(row.buyDateAndTime), textScaleFactor: 0.6),
-              Text(row.store.toString(), textScaleFactor: 0.6),
-              Text(row.buySum.toString(), textScaleFactor: 0.6),
-              Text(datastore.loyaltyProgram.name, textScaleFactor: 0.6),
-              Text(row.bonusSpent.toString(), textScaleFactor: 0.6),
-              Text(row.earnedBonus.toString(), textScaleFactor: 0.6),
-              Text(row.level.toString(), textScaleFactor: 0.6),
-            ]))
-        ])),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Container(
+              width: MediaQuery.of(context).size.width * 2,
+              child: Table(children: [
+                TableRow(children: [
+                  Text("Дата покупки"),
+                  Text("Магазин"),
+                  Text("Сумма покупки"),
+                  Text("Программа лояльности"),
+                  Text("Потрачено бонусов"),
+                  Text("Получено бонусов"),
+                  Text("Уровень программы"),
+                ]),
+                for (final row in purchaseHistory)
+                  (TableRow(
+
+                    children: [
+                    TableCell(
+                      child: Text(formatter.format(row.buyDateAndTime)),
+                    ),
+                    TableCell(child: Text(row.store.toString())),
+                    TableCell(child: Text(row.buySum.toString())),
+                    TableCell(child: Text(datastore.loyaltyProgram.name)),
+                    TableCell(child: Text(row.bonusSpent.toString())),
+                    TableCell(child: Text(row.earnedBonus.toString())),
+                    TableCell(child: Text(row.level.toString())),
+                  ]))
+              ])),
+        ),
       ),
     );
   }
