@@ -15,8 +15,8 @@ class Nav extends StatefulWidget {
 class _NavState extends State<Nav> {
   List<Widget> _widgetOptions = <Widget>[
 Cabinet(ObjectKey(datastore), datastore),
+Text('QR-код'),
 Profile(datastore: datastore),
-Text('Cabinet')
   ];
   
   void _onItemTap(int index){
@@ -38,6 +38,7 @@ Text('Cabinet')
                 BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Кабинет"),
+            BottomNavigationBarItem(icon: Icon(Icons.qr_code), label: "QR-код"),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: "Профиль")
           ],
           currentIndex: widget.selectedIndex,

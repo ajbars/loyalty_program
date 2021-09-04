@@ -10,10 +10,10 @@ class Cabinet extends StatelessWidget {
     this.datastore,
   ) : super(key: key);
 
-  @override
   // final DateFormat formatter = DateFormat('yyyy-MM-dd hh:mm:ss');
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
-
+  
+  @override
   Widget build(BuildContext context) {
     final purchaseHistory = datastore.bonusAccount.purchaseHistory;
     return SafeArea(
