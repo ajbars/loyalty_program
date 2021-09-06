@@ -1,4 +1,5 @@
 import 'package:bottombar/models/dataStore.model.dart';
+import 'package:bottombar/qr.dart';
 import 'package:bottombar/screens/login.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class Nav extends StatefulWidget {
 class _NavState extends State<Nav> {
   List<Widget> _widgetOptions = <Widget>[
 Cabinet(ObjectKey(datastore), datastore),
-Text('QR-код'),
+QRCode(),
 Profile(datastore: datastore),
   ];
   
