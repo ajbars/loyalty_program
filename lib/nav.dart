@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'screens/Profile.dart';
 import 'screens/cabinet.dart';
 class Nav extends StatefulWidget {
-  DataStore datastore;
+  final DataStore datastore;
   int selectedIndex;
   Nav({Key? key, required this.selectedIndex, required this.datastore});
   @override

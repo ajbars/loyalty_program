@@ -19,7 +19,7 @@ class DataStore {
 
 
   DataStore(this._myClient, this._loyaltyProgram, this._bonusAccount);
-
+  
   Client get myClient => _myClient;
 
 set setNewClient (Client newClient) {
