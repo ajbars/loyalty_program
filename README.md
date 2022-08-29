@@ -1,6 +1,5 @@
-# bottombar
+# Flutter loyalty program app
 
-A new Flutter project.
 
 ## Getting Started
 
